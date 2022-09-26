@@ -1,12 +1,14 @@
 /* eslint-disable */
 <template>
-  <div>
+  <div style="display:flex; align-items: flex-start;
+ margin-top: 5%;">
   <DxPieChart
     id="pie"
     :data-source="popular"
     type="doughnut"
     title="Популярные способы пересечения границы"
     palette="Soft Pastel"
+    style="width: 50%;"
   >
     <DxSeries argument-field="transport_type">
       <DxLabel :visible="true" >
@@ -21,6 +23,28 @@
     <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip">
     </DxTooltip>
   </DxPieChart>
+  <DxPieChart
+    id="pie2"
+    :data-source="border"
+    type="doughnut"
+    title="Пересечение границы"
+    palette="Material"
+    style="width: 50%;"
+  >
+    <DxSeries argument-field="check">
+      <DxLabel :visible="true" >
+        <DxConnector :visible="true" />
+      </DxLabel>
+    </DxSeries>
+    <DxLegend
+      :margin="0"
+      horizontal-alignment="right"
+      vertical-alignment="top"
+    />
+    <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip">
+    </DxTooltip>
+  </DxPieChart>
+  
 </div>
 </template>
 <script>
@@ -45,58 +69,42 @@ export default {
   },
   data() {
     return {
-      populationByRegions: [
-        {
-          region: "Asia",
-          val: 4119626293,
-        },
-        {
-          region: "Africa",
-          val: 1012956064,
-        },
-        {
-          region: "Northern America",
-          val: 344124520,
-        },
-        {
-          region: "Latin America and the Caribbean",
-          val: 590946440,
-        },
-        {
-          region: "Europe",
-          val: 727082222,
-        },
-        {
-          region: "Oceania",
-          val: 35104756,
-        },
-      ],
       popular: [
+            {
+              transport_type: "Самолет",
+              val: 1720,
+            },
+            {
+              transport_type: "Авто",
+              val: 585
+            },
+            {
+              transport_type: "Поезд",
+              val: 261,
+            },
+            {
+              transport_type: "Автобус",
+              val: 233,
+            },
+            {
+              transport_type: "Пешком",
+              val: 99,
+            },
+          ],
+      border: [
         {
-          transport_type: "Самолет",
-          val: 1720
+          check: "Успешно прошли",
+          val: 2841
         },
         {
-          transport_type: "Авто",
-          val: 585
-        },
-        {
-          transport_type: "Поезд",
-          val: 261
-        },
-        {
-          transport_type: "Автобус",
-          val: 233
-        },
-        {
-          transport_type: "Пешком",
-          val: 99
+          check: "Не прошли",
+          val: 57
         },
       ],
     };
   },
   methods: {
-    customizeTooltip({ valueText, percent }) {
+    customizeTooltip({ percent }) {
       return {
         text: `${(percent * 100).toFixed(2)}%`,
       };

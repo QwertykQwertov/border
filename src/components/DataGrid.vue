@@ -26,7 +26,7 @@
     />
     <DxSummary>
       <DxTotalItem  display-format="Всего:"> </DxTotalItem>
-      <DxTotalItem column="cnt" summary-type="sum" display-format="Всего: {0}"> </DxTotalItem>
+      <DxTotalItem column="cnt" summary-type="sum" display-format="Всего: {0}" v-model="test"> </DxTotalItem>
       <DxTotalItem column="success_cnt" summary-type="sum" display-format="Всего: {0}"> </DxTotalItem>
       <DxTotalItem column="failed_cnt" summary-type="sum" display-format="Всего: {0}"> </DxTotalItem>
     </DxSummary>
@@ -59,6 +59,7 @@ export default {
   },
   data() {
     return {
+      test: 0,
       dataSource: new DataSource({
         key: "transport_type",
         load() {
