@@ -1,19 +1,26 @@
+/* eslint-disable */
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Landing />
+    <DataGrid />
+    <Chart />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Landing from "./components/Landing.vue";
+import Chart from "./components/Chart.vue";
+import DataGrid from "./components/DataGrid.vue";
+import "devextreme/dist/css/dx.material.orange.light.compact.css";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    DataGrid,
+    Landing,
+    Chart
+  },
+};
 </script>
 
 <style>
