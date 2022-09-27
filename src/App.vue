@@ -1,24 +1,27 @@
 /* eslint-disable */
 <template>
   <div id="app">
-    <Landing />
     <DataGrid />
     <Chart />
   </div>
 </template>
 
 <script>
-import Landing from "./components/Landing.vue";
 import Chart from "./components/Chart.vue";
 import DataGrid from "./components/DataGrid.vue";
 import "devextreme/dist/css/dx.material.orange.light.compact.css";
+import store from "./store/store";
 
 export default {
   name: "App",
   components: {
     DataGrid,
-    Landing,
-    Chart
+    Chart,
+  },
+  data() {
+    return {
+      store,
+    };
   },
 };
 </script>

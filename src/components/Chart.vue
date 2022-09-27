@@ -48,6 +48,7 @@
 </div>
 </template>
 <script>
+  import store from "../store/store"
 import DxPieChart, {
   DxLegend,
   DxSeries,
@@ -69,6 +70,7 @@ export default {
   },
   data() {
     return {
+      store,
       popular: [
             {
               transport_type: "Самолет",
@@ -103,6 +105,18 @@ export default {
       ],
     };
   },
+  // computed:{
+  //   mostPopular: ()=>{
+  //     let popularFromChart = []
+  //     store.dataSource.load().forEach(msg =>{
+  //       popularFromChart.push({
+  //             transport_type: msg.transport_type,
+  //             val: msg.cnt,
+  //           })
+  //           return popularFromChart
+  //     })
+  //   }
+  // },
   methods: {
     customizeTooltip({ percent }) {
       return {
