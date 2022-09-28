@@ -13,7 +13,7 @@
 
     <DxDataGrid
       ref="grid"
-      :data-source="store.dataSource"
+      :data-source="store.allMessages"
       :show-borders="true"
       :focused-row-enabled="true"
       :search-enabled="true"
@@ -98,6 +98,7 @@ export default {
   methods: {
     onClick(e) {
       this.$refs.grid.$_instance.refresh();
+      console.log(this.$refs)
     },
   },
 };
