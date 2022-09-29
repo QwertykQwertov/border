@@ -4,15 +4,15 @@ export default {
   allMessages: new DataSource({
     key: "transport_type",
     load() {
-      return fetch("http://relocate.artydev.ru:8000/api/v1/stats_all_time")
+      return fetch("https://border-api.artydev.ru/api/v1/stats_all_time")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
-          data.forEach((el, index) => {
-            data[index].cnt = el.success_cnt + el.failed_cnt
-          } )
+          data.forEach(
+            (el, index) =>
+              (data[index].success_percent = el.success_percent + "%")
+          );
           return data;
         });
     },
@@ -20,17 +20,18 @@ export default {
   stats: new DataSource({
     key: "transport_type",
     load() {
-      return fetch("http://relocate.artydev.ru:8000/api/v1/stats")
+      return fetch("https://border-api.artydev.ru/api/v1/stats")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
-          data = data.filter(el => el.message_dt > '2022-09-20T00:00:00Z')
-          data.forEach((el, index) => {
-            data[index].cnt = el.success_cnt + el.failed_cnt
-            data[index].message_dt = el.message_dt.slice(0,10)
-          } )
+          data.sort((a, b) => {
+            if (a.message_dt === b.message_dt) {
+              return 0;
+            } else {
+              return a.message_dt > b.message_dt ? 1 : -1;
+            }
+          });
 
           return data;
         });
@@ -39,15 +40,20 @@ export default {
   transport: new DataSource({
     key: "transport_type",
     load() {
-      return fetch("http://relocate.artydev.ru:8000/api/v1/transport")
+      return fetch("https://border-api.artydev.ru/api/v1/transport")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
+          const today = new Date();
+          data.forEach(
+            (el, index) =>
+              (data[index].success_percent =
+                ((el.success_cnt / el.cnt) * 100).toFixed(2) + "%")
+          );
           data = data.filter((el) => {
-            return el.message_dt === "2022-09-28T00:00:00Z"
-          } )
+            return el.message_dt === today.toISOString().slice(0, 10);
+          });
           return data;
         });
     },
@@ -55,16 +61,11 @@ export default {
   airports: new DataSource({
     key: "transport_type",
     load() {
-      return fetch("http://relocate.artydev.ru:8000/api/v1/airport")
+      return fetch("https://border-api.artydev.ru/api/v1/airport_today")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-
-          data = data.filter((el) => {
-            return el.message_dt === "2022-09-28T00:00:00Z"
-          } )
-          console.log(data, "AIRPORTS");
           return data;
         });
     },

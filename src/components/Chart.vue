@@ -1,16 +1,8 @@
 /* eslint-disable */
 <template>
-  <div
-    style="
-      display: flex;
-      align-items: flex-start;
-      margin-top: 1%;
-      flex-wrap: wrap;
-    "
-  >
+  <div class="wrapper">
     <!-- ------------------------------- -->
     <DxChart
-      id="chart"
       :data-source="store.stats"
       palette="Violet"
       title="Динамика количества попыток пересечения границы по дням"
@@ -37,44 +29,35 @@
       <DxLegend vertical-alignment="top" horizontal-alignment="right" />
       <DxTooltip :enabled="true" />
     </DxChart>
-<!--  -->
-<DxChart
-    id="chart"
-    :data-source="store.airports"
-    title="Статистика аэропортов за сегодня"
-    style="width: 50%"
-  >
-    <DxCommonSeriesSettings
-      argument-field="from_airport"
-      type="stackedbar"
-    />
-    <DxSeries
-      value-field="success_cnt"
-      name="Успешно"
-    />
-    <DxSeries
-      value-field="failed_cnt"
-      name="Не прошли"
-    />
-    <DxLegend
-      vertical-alignment="bottom"
-      horizontal-alignment="center"
-      item-text-position="top"
-    />
-    <DxTooltip
-      :enabled="true"
-      :customize-tooltip="customizeTooltip3"
-      location="edge"
-    />
-  </DxChart>
- <!--  -->
+    <!--  -->
+    <DxChart
+      id="chart"
+      :data-source="store.airports"
+      title="Статистика аэропортов за сегодня"
+      class="chart"
+    >
+      <DxCommonSeriesSettings argument-field="from_airport" type="stackedbar" />
+      <DxSeries value-field="success_cnt" name="Успешно" />
+      <DxSeries value-field="failed_cnt" name="Не прошли" />
+      <DxLegend
+        vertical-alignment="bottom"
+        horizontal-alignment="center"
+        item-text-position="top"
+      />
+      <DxTooltip
+        :enabled="true"
+        :customize-tooltip="customizeTooltip3"
+        location="edge"
+      />
+    </DxChart>
+    <!--  -->
     <DxPieChart
       id="transport"
       :data-source="store.transport"
       type="doughnut"
       title="Статистика транспорта за сегодня"
       palette="Soft Pastel"
-      style="width: 50%"
+      class="chart"
     >
       />
       <DxSeries
@@ -103,30 +86,6 @@
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip2">
       </DxTooltip>
     </DxPieChart>
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <!-- <DxPieChart
-      id="pie2"
-      :data-source="border"
-      type="doughnut"
-      title="Пересечение границы"
-      palette="Material"
-      style="width: 50%"
-    >
-      <DxSeries argument-field="check">
-        <DxLabel :visible="true">
-          <DxConnector :visible="true" />
-        </DxLabel>
-      </DxSeries>
-      <DxLegend
-        :margin="0"
-        horizontal-alignment="right"
-        vertical-alignment="top"
-      />
-      <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip">
-      </DxTooltip>
-    </DxPieChart> -->
   </div>
 </template>
 <script>
@@ -179,52 +138,8 @@ export default {
         { value: "success_cnt", name: "Успешно" },
         { value: "failed_cnt", name: "Не пропустили" },
       ],
-      popular: [
-        {
-          transport_type: "Самолет",
-          val: 1720,
-        },
-        {
-          transport_type: "Авто",
-          val: 585,
-        },
-        {
-          transport_type: "Поезд",
-          val: 261,
-        },
-        {
-          transport_type: "Автобус",
-          val: 233,
-        },
-        {
-          transport_type: "Пешком",
-          val: 99,
-        },
-      ],
-      border: [
-        {
-          check: "Успешно прошли",
-          val: 2841,
-        },
-        {
-          check: "Не прошли",
-          val: 57,
-        },
-      ],
     };
   },
-  // computed:{
-  //   mostPopular: ()=>{
-  //     let popularFromChart = []
-  //     store.dataSource.load().forEach(msg =>{
-  //       popularFromChart.push({
-  //             transport_type: msg.transport_type,
-  //             val: msg.cnt,
-  //           })
-  //           return popularFromChart
-  //     })
-  //   }
-  // },
   methods: {
     customizeTooltip({ percent }) {
       return {
@@ -233,13 +148,7 @@ export default {
     },
     customizeTooltip2(pointInfo) {
       return {
-        text:
-          `${pointInfo.argumentText
-          }<br>${
-            pointInfo.seriesName
-          }: ${
-            pointInfo.valueText
-          }`,
+        text: `${pointInfo.argumentText}<br>${pointInfo.seriesName}: ${pointInfo.valueText}`,
       };
     },
     customizeTooltip3(pointInfo) {
@@ -253,7 +162,18 @@ export default {
 };
 </script>
 <style>
-#pie {
-  height: 440px;
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1%;
+  flex-wrap: wrap;
+}
+.chart {
+  width: 50%;
+}
+@media screen and (max-width: 1000px) {
+  .chart {
+    width: 100%;
+  }
 }
 </style>
