@@ -10,14 +10,14 @@
       "
     >
       <p>
-        <a class="link" href="https://pay.cloudtips.ru/p/2a3d8e17"
-          ><img class="linkIcon" src="../assets/ruble.svg" alt="Пример" />
+        <a class="link" href="https://pay.cloudtips.ru/p/2a3d8e17" target="_blank"
+          ><img class="linkIcon" src="../assets/ruble.svg" alt="Пожертвовать" />
           Подкинуть монету разработчикам</a
         >
       </p>
       <p>
-        <a class="link" href="https://t.me/+lUS8sdQPGMkzNDhi"
-          ><img class="linkIcon" src="../assets/telega.svg" alt="Пример" />
+        <a class="link" href="https://t.me/+lUS8sdQPGMkzNDhi" target="_blank"
+          ><img class="linkIcon" src="../assets/telega.svg" alt="Ссылка на телеграм" />
           Подписывайся, чтобы следить за изменениями</a
         >
       </p>

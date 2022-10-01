@@ -20,13 +20,17 @@
       />
       <DxMargin :bottom="20" />
       <DxArgumentAxis :allow-decimals="false" :axis-division-factor="60">
+        <!-- <DxLabel
+          displayMode="rotate"
+          :rotationAngle="45"
+        > -->
         <DxLabel>
           <DxFormat type="decimal" />
         </DxLabel>
       </DxArgumentAxis>
       <DxScrollBar :visible="true" />
       <DxZoomAndPan argument-axis="both" />
-      <DxLegend vertical-alignment="top" horizontal-alignment="right" />
+      <DxLegend vertical-alignment="bottom" horizontal-alignment="center" />
       <DxTooltip :enabled="true" />
     </DxChart>
     <!--  -->
@@ -36,7 +40,7 @@
       title="Статистика аэропортов за сегодня"
       class="chart"
     >
-      <DxCommonSeriesSettings argument-field="from_airport" type="stackedbar" />
+      <DxCommonSeriesSettings argument-field="iata_code" type="stackedbar"/>
       <DxSeries value-field="success_cnt" name="Успешно" />
       <DxSeries value-field="failed_cnt" name="Не прошли" />
       <DxLegend
@@ -46,46 +50,44 @@
       />
       <DxTooltip
         :enabled="true"
-        :customize-tooltip="customizeTooltip3"
+        :customize-tooltip="airportTooltip"
         location="edge"
       />
+      <DxArgumentAxis :allow-decimals="false" :axis-division-factor="60">
+        <!-- <DxLabel
+          displayMode="rotate"
+          :rotationAngle="45"
+        >
+        </DxLabel> -->
+      </DxArgumentAxis>
     </DxChart>
     <!--  -->
-    <DxPieChart
-      id="transport"
-      :data-source="store.transport"
-      type="doughnut"
-      title="Статистика транспорта за сегодня"
-      palette="Soft Pastel"
+    <DxChart
+      id="chart"
+      :data-source="store.airportsAllTime"
+      title="Статистика аэропортов за все время"
       class="chart"
     >
-      />
-      <DxSeries
-        name="Успешно"
-        argument-field="transport_type"
-        value-field="success_cnt"
-      >
-        <DxLabel :visible="true">
-          <DxConnector :visible="true" />
-        </DxLabel>
-      </DxSeries>
-      <DxSeries
-        name="Не прошли"
-        argument-field="transport_type"
-        value-field="failed_cnt"
-      >
-        <DxLabel :visible="true">
-          <DxConnector :visible="true" />
-        </DxLabel>
-      </DxSeries>
+      <DxCommonSeriesSettings argument-field="iata_code" type="stackedbar"/>
+      <DxSeries value-field="success_cnt" name="Успешно" color="#04a863" />
+      <DxSeries value-field="failed_cnt" name="Не прошли" color="#ee1c25" />
       <DxLegend
-        :margin="0"
-        horizontal-alignment="right"
-        vertical-alignment="top"
+        vertical-alignment="bottom"
+        horizontal-alignment="center"
+        item-text-position="top"
       />
-      <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip2">
-      </DxTooltip>
-    </DxPieChart>
+      <DxTooltip
+        :enabled="true"
+        :customize-tooltip="airportTooltip"
+        location="edge"
+      />
+      <DxArgumentAxis :allow-decimals="false" :axis-division-factor="60">
+        <!-- <DxLabel
+          displayMode="rotate"
+        >
+        </DxLabel> -->
+      </DxArgumentAxis>
+    </DxChart>
   </div>
 </template>
 <script>
@@ -94,7 +96,6 @@ import DxPieChart, {
   DxLegend,
   DxSeries,
   DxTooltip,
-  DxLabel,
   DxConnector,
   DxExport,
 } from "devextreme-vue/pie-chart";
@@ -109,6 +110,7 @@ import {
   DxFormat,
   DxScrollBar,
   DxZoomAndPan,
+  DxLabel,
 } from "devextreme-vue/chart";
 
 export default {
@@ -133,6 +135,7 @@ export default {
   data() {
     return {
       store,
+      angle: 45,
       architectures: [
         { value: "cnt", name: "Всего попыток" },
         { value: "success_cnt", name: "Успешно" },
@@ -140,7 +143,19 @@ export default {
       ],
     };
   },
+  // mounted(){
+  //   this.$nextTick(function () {
+  //   document.querySelector('.')
+  // })
+  // },
   methods: {
+    airportTooltip(pointInfo) {
+      return {
+        text: `${pointInfo.point.data.airport_name}<br>${
+          pointInfo.seriesName
+        }: ${pointInfo.valueText}<br>${(pointInfo.percent * 100).toFixed(2)}%`,
+      };
+    },
     customizeTooltip({ percent }) {
       return {
         text: `${(percent * 100).toFixed(2)}%`,
@@ -152,6 +167,7 @@ export default {
       };
     },
     customizeTooltip3(pointInfo) {
+      console.log(pointInfo);
       return {
         text: `${pointInfo.argumentText}<br>${pointInfo.seriesName}: ${
           pointInfo.valueText

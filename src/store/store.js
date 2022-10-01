@@ -5,6 +5,7 @@ export default {
     key: "transport_type",
     load() {
       return fetch("https://border-api.artydev.ru/api/v1/stats_all_time")
+      // return fetch("http://relocate.artydev.ru:8000/api/v1/stats_all_time")
         .then((response) => {
           return response.json();
         })
@@ -61,7 +62,20 @@ export default {
   airports: new DataSource({
     key: "transport_type",
     load() {
-      return fetch("https://border-api.artydev.ru/api/v1/airport_today")
+      let today= new Date()
+      today = today.toISOString().slice(0,10)
+      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${today}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          return data;
+        });
+    },  }),
+  airportsAllTime: new DataSource({
+    key: "transport_type",
+    load() {
+      return fetch("https://border-api.artydev.ru/api/v1/airport_all_time")
         .then((response) => {
           return response.json();
         })
