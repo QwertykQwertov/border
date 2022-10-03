@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div class="container">
+  <div class="data-wrapper">
     <h1>Стастистика прохождения пограничного контроля</h1>
     <div
       style="
@@ -46,6 +46,7 @@
           :data-source="store.allMessages"
           :show-borders="true"
           :focused-row-enabled="true"
+          @cell-prepared="setPercentColor"
         >
           <DxColumn
             data-field="transport_type"
@@ -101,6 +102,8 @@
           :data-source="store.transport"
           :show-borders="true"
           :focused-row-enabled="true"
+          @cell-prepared="setPercentColor"
+
         >
           <DxColumn
             data-field="transport_type"
@@ -181,15 +184,25 @@ export default {
       store,
     };
   },
-  // methods: {
+  methods: {
   //   onClick(e) {
   //     this.$refs.grid.$_instance.refresh();
   //     console.log(this.$refs);
   //   },
-  // },
+  setPercentColor(e) {
+         if( e.rowType === "data" && e.column.dataField === "success_percent"){
+           e.data.Task_Status === "Completed"
+           e.cellElement.style.color = parseInt(e.value) > 90 ? "green" : "red"
+         }
+
+        }
+  },
 };
 </script>
 <style scoped>
+  .data-wrapper{
+    text-align: center;
+  }
 .link {
   text-decoration: none;
   color: black;

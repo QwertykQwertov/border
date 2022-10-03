@@ -6,7 +6,7 @@
       :data-source="store.stats"
       palette="Violet"
       title="Динамика количества попыток пересечения границы по дням"
-      style="width: 99%"
+      style="width: 98%"
     >
       <DxCommonSeriesSettings argument-field="message_dt" />
       <DxCommonAxisSettings>
@@ -181,7 +181,7 @@ export default {
 .wrapper {
   display: flex;
   align-items: flex-start;
-  margin-top: 1%;
+  margin: 2% 0;
   flex-wrap: wrap;
 }
 .chart {
