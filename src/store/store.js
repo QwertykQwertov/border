@@ -5,7 +5,6 @@ export default {
     key: "transport_type",
     load() {
       return fetch("https://border-api.artydev.ru/api/v1/stats_all_time")
-      // return fetch("http://relocate.artydev.ru:8000/api/v1/stats_all_time")
         .then((response) => {
           return response.json();
         })
@@ -80,6 +79,34 @@ export default {
           return response.json();
         })
         .then((data) => {
+          return data;
+        });
+    },
+  }),
+  destinationsAllTime: new DataSource({
+    key: "transport_type",
+    load () {
+      return fetch("https://border-api.artydev.ru/api/v1/destination_all_time")
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          data.sort((a,b) => b.cnt - a.cnt)
+          return data;
+        });
+    },
+  }),
+  destinationsToday: new DataSource({
+    key: "transport_type",
+    load () {
+      let today = new Date()
+      today = today.toISOString().slice(0, 10)
+      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${today}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          data.sort((a,b) => b.cnt - a.cnt)
           return data;
         });
     },

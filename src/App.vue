@@ -20,6 +20,7 @@
         <span>Наша команда</span> собрала статистику всех пересечений границ (по
         данным телеграмм-канала
         <a
+          class="link"
           href="https://t.me/+r15hFvTaWhM5MDUy"
           target="_blank"
           style="color: black; text-decoration: underline;"
@@ -28,9 +29,9 @@
         визуализировали в одном месте.
       </p>
       <p> Теперь
-        смотреть статистику по % успешных проходов границы стало сильно удобнее.<br/>
+        смотреть статистику по проценту успешных проходов границы стало сильно удобнее.<br/>
         Наш телеграмм канал:
-        <a class="link" href="https://t.me/artydevc"  target="_blank"><img class="linkIcon" src="./assets/telega.svg" alt="Ссылка на телеграм" /></a>, там будем публиковать информацию по доработкам
+        <a class="link" style="color: black; text-decoration: underline;" href="https://t.me/artydevc"  target="_blank"><b>artydev & Co</b></a>, там будем публиковать информацию по доработкам
         графиков и разметке информации
       </p>
     </DxPopup>
@@ -83,9 +84,10 @@ export default {
   margin: 0;
 }
 .link:hover {
-  color: #666;
+  color: #666 !important;
   text-shadow: 10px;
   text-decoration-line: underline;
+  
 }
 .linkIcon {
   width: 25px;

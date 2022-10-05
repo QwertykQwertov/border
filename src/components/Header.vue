@@ -6,10 +6,8 @@
         <a href="#" class="brand-logo" style="margin-left: 1%"
           ><img class="logoIcon" src="../assets/logo.svg" alt="Logo"
         /></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-mobile" class="right">
           <li><a href="#" @click="showPopup" >О проекте</a></li>
-          <li><a href="badges.html">Link 1</a></li>
-          <li><a href="collapsible.html">Link 2</a></li>
         </ul>
       </div>
     </nav>
@@ -34,7 +32,4 @@ export default {
 };
 </script>
 <style scoped>
-.logoIcon {
-  /* max-width:55px */
-}
 </style>

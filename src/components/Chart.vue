@@ -19,7 +19,10 @@
         :name="architecture.name"
       />
       <DxMargin :bottom="20" />
-      <DxArgumentAxis :allow-decimals="false" :axis-division-factor="60">
+      <DxArgumentAxis
+        :allow-decimals="false"
+        :axis-division-factor="60"
+      >
         <!-- <DxLabel
           displayMode="rotate"
           :rotationAngle="45"
@@ -30,7 +33,10 @@
       </DxArgumentAxis>
       <DxScrollBar :visible="true" />
       <DxZoomAndPan argument-axis="both" />
-      <DxLegend vertical-alignment="bottom" horizontal-alignment="center" />
+      <DxLegend
+        vertical-alignment="bottom"
+        horizontal-alignment="center"
+      />
       <DxTooltip :enabled="true" />
     </DxChart>
     <!--  -->
@@ -40,9 +46,18 @@
       title="Статистика аэропортов за сегодня"
       class="chart"
     >
-      <DxCommonSeriesSettings argument-field="iata_code" type="stackedbar"/>
-      <DxSeries value-field="success_cnt" name="Успешно" />
-      <DxSeries value-field="failed_cnt" name="Не прошли" />
+      <DxCommonSeriesSettings
+        argument-field="iata_code"
+        type="stackedbar"
+      />
+      <DxSeries
+        value-field="success_cnt"
+        name="Успешно"
+      />
+      <DxSeries
+        value-field="failed_cnt"
+        name="Не прошли"
+      />
       <DxLegend
         vertical-alignment="bottom"
         horizontal-alignment="center"
@@ -53,7 +68,10 @@
         :customize-tooltip="airportTooltip"
         location="edge"
       />
-      <DxArgumentAxis :allow-decimals="false" :axis-division-factor="60">
+      <DxArgumentAxis
+        :allow-decimals="false"
+        :axis-division-factor="60"
+      >
         <!-- <DxLabel
           displayMode="rotate"
           :rotationAngle="45"
@@ -68,9 +86,20 @@
       title="Статистика аэропортов за все время"
       class="chart"
     >
-      <DxCommonSeriesSettings argument-field="iata_code" type="stackedbar"/>
-      <DxSeries value-field="success_cnt" name="Успешно" color="#04a863" />
-      <DxSeries value-field="failed_cnt" name="Не прошли" color="#ee1c25" />
+      <DxCommonSeriesSettings
+        argument-field="iata_code"
+        type="stackedbar"
+      />
+      <DxSeries
+        value-field="success_cnt"
+        name="Успешно"
+        color="#04a863"
+      />
+      <DxSeries
+        value-field="failed_cnt"
+        name="Не прошли"
+        color="#ee1c25"
+      />
       <DxLegend
         vertical-alignment="bottom"
         horizontal-alignment="center"
@@ -81,7 +110,93 @@
         :customize-tooltip="airportTooltip"
         location="edge"
       />
-      <DxArgumentAxis :allow-decimals="false" :axis-division-factor="60">
+      <DxArgumentAxis
+        :allow-decimals="false"
+        :axis-division-factor="60"
+      >
+        <!-- <DxLabel
+          displayMode="rotate"
+        >
+        </DxLabel> -->
+      </DxArgumentAxis>
+    </DxChart>
+    <!-- destination -->
+    <DxChart
+      id="chart"
+      :data-source="store.destinationsToday"
+      title="Статистика по странам прибытия за сегодня"
+      class="chart"
+    >
+      <DxCommonSeriesSettings
+        argument-field="destination"
+        type="stackedbar"
+      />
+      <DxSeries
+        value-field="success_cnt"
+        name="Успешно"
+        color="#233291"
+      />
+      <DxSeries
+        value-field="failed_cnt"
+        name="Не прошли"
+        color="#ee1c25"
+      />
+      <DxLegend
+        vertical-alignment="bottom"
+        horizontal-alignment="center"
+        item-text-position="top"
+      />
+      <DxTooltip
+        :enabled="true"
+        :customize-tooltip="destinationTooltip"
+        location="edge"
+      />
+      <DxArgumentAxis
+        :allow-decimals="false"
+        :axis-division-factor="60"
+      >
+        <!-- <DxLabel
+          displayMode="rotate"
+          :rotationAngle="45"
+        >
+        </DxLabel> -->
+      </DxArgumentAxis>
+    </DxChart>
+    <!--  -->
+    <DxChart
+      id="chart"
+      :data-source="store.destinationsAllTime"
+      title="Статистика по странам прибытия за все время"
+      class="chart"
+    >
+      <DxCommonSeriesSettings
+        argument-field="destination"
+        type="stackedbar"
+      />
+      <DxSeries
+        value-field="success_cnt"
+        name="Успешно"
+        color="#315e22"
+      />
+      <DxSeries
+        value-field="failed_cnt"
+        name="Не прошли"
+        color="#ee1c25"
+      />
+      <DxLegend
+        vertical-alignment="bottom"
+        horizontal-alignment="center"
+        item-text-position="top"
+      />
+      <DxTooltip
+        :enabled="true"
+        :customize-tooltip="destinationTooltip"
+        location="edge"
+      />
+      <DxArgumentAxis
+        :allow-decimals="false"
+        :axis-division-factor="60"
+      >
         <!-- <DxLabel
           displayMode="rotate"
         >
@@ -92,12 +207,13 @@
 </template>
 <script>
 import store from "../store/store";
-import DxPieChart, {
+import {
+  // DxPieChart,
   DxLegend,
   DxSeries,
   DxTooltip,
-  DxConnector,
-  DxExport,
+  // DxConnector,
+  // DxExport,
 } from "devextreme-vue/pie-chart";
 
 import {
@@ -115,13 +231,13 @@ import {
 
 export default {
   components: {
-    DxPieChart,
+    // DxPieChart,
     DxLegend,
     DxSeries,
     DxTooltip,
     DxLabel,
-    DxConnector,
-    DxExport,
+    // DxConnector,
+    // DxExport,
     DxChart,
     DxArgumentAxis,
     DxCommonSeriesSettings,
@@ -132,7 +248,7 @@ export default {
     DxScrollBar,
     DxZoomAndPan,
   },
-  data() {
+  data () {
     return {
       store,
       angle: 45,
@@ -143,35 +259,33 @@ export default {
       ],
     };
   },
-  // mounted(){
-  //   this.$nextTick(function () {
-  //   document.querySelector('.')
-  // })
-  // },
   methods: {
-    airportTooltip(pointInfo) {
+    destinationTooltip (pointInfo) {
       return {
-        text: `${pointInfo.point.data.airport_name}<br>${
-          pointInfo.seriesName
-        }: ${pointInfo.valueText}<br>${(pointInfo.percent * 100).toFixed(2)}%`,
+        text: `${pointInfo.seriesName}: ${pointInfo.valueText}<br>${(pointInfo.percent * 100).toFixed(2)}%`,
       };
     },
-    customizeTooltip({ percent }) {
+    airportTooltip (pointInfo) {
+      return {
+        text: `${pointInfo.point.data.airport_name}<br>${pointInfo.seriesName
+          }: ${pointInfo.valueText}<br>${(pointInfo.percent * 100).toFixed(2)}%`,
+      };
+    },
+    customizeTooltip ({ percent }) {
       return {
         text: `${(percent * 100).toFixed(2)}%`,
       };
     },
-    customizeTooltip2(pointInfo) {
+    customizeTooltip2 (pointInfo) {
       return {
         text: `${pointInfo.argumentText}<br>${pointInfo.seriesName}: ${pointInfo.valueText}`,
       };
     },
-    customizeTooltip3(pointInfo) {
+    customizeTooltip3 (pointInfo) {
       console.log(pointInfo);
       return {
-        text: `${pointInfo.argumentText}<br>${pointInfo.seriesName}: ${
-          pointInfo.valueText
-        }<br>${(pointInfo.percent * 100).toFixed(2)}%`,
+        text: `${pointInfo.argumentText}<br>${pointInfo.seriesName}: ${pointInfo.valueText
+          }<br>${(pointInfo.percent * 100).toFixed(2)}%`,
       };
     },
   },
