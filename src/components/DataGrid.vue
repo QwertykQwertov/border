@@ -185,14 +185,10 @@ export default {
     };
   },
   methods: {
-  //   onClick(e) {
-  //     this.$refs.grid.$_instance.refresh();
-  //     console.log(this.$refs);
-  //   },
   setPercentColor(e) {
          if( e.rowType === "data" && e.column.dataField === "success_percent"){
            e.data.Task_Status === "Completed"
-           e.cellElement.style.color = parseInt(e.value) > 90 ? "green" : "red"
+           e.cellElement.style.color = parseFloat(e.value) > 90 ? "green" : "red"
          }
 
         }

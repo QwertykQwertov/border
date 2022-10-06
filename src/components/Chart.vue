@@ -198,6 +198,7 @@
         :axis-division-factor="60"
       >
         <!-- <DxLabel
+        :rotationAngle="45"
           displayMode="rotate"
         >
         </DxLabel> -->
@@ -262,7 +263,7 @@ export default {
   methods: {
     destinationTooltip (pointInfo) {
       return {
-        text: `${pointInfo.seriesName}: ${pointInfo.valueText}<br>${(pointInfo.percent * 100).toFixed(2)}%`,
+        text: `${pointInfo.point.data.destination}<br>${pointInfo.seriesName}: ${pointInfo.valueText}<br>${(pointInfo.percent * 100).toFixed(2)}%`,
       };
     },
     airportTooltip (pointInfo) {

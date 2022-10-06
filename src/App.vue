@@ -12,7 +12,7 @@
       :show-title="true"
       :show-close-button="true"
       width="50%"
-      height="50%"
+      :height="heightPopup"
       title="О проекте"
       @hiding="onHiding"
     >
@@ -61,6 +61,15 @@ export default {
       store,
       popupVisible: false,
     };
+  },
+  computed: {
+    heightPopup () {
+      if (window.innerWidth >= 800) {
+        return "50%"
+      } else {
+        return "90%"
+      }
+    }
   },
   methods: {
     showPopup() {
