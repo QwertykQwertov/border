@@ -2,6 +2,10 @@
 <template>
   <div class="data-wrapper">
     <h1>Стастистика прохождения пограничного контроля</h1>
+    <h3 id="blink5">
+      В настоящее время сбор данных прекращен. Сервис доступен в ознакомительных
+      целях.
+    </h3>
     <div
       style="
         display: flex;
@@ -10,14 +14,21 @@
       "
     >
       <p>
-        <a class="link" href="https://pay.cloudtips.ru/p/2a3d8e17" target="_blank"
+        <a
+          class="link"
+          href="https://pay.cloudtips.ru/p/2a3d8e17"
+          target="_blank"
           ><img class="linkIcon" src="../assets/ruble.svg" alt="Пожертвовать" />
           Подкинуть монету разработчикам</a
         >
       </p>
       <p>
         <a class="link" href="https://t.me/+lUS8sdQPGMkzNDhi" target="_blank"
-          ><img class="linkIcon" src="../assets/telega.svg" alt="Ссылка на телеграм" />
+          ><img
+            class="linkIcon"
+            src="../assets/telega.svg"
+            alt="Ссылка на телеграм"
+          />
           Подписывайся, чтобы следить за изменениями</a
         >
       </p>
@@ -39,7 +50,7 @@
         justify-content: space-around;
       "
     >
-      <div class = "gridContainer">
+      <div class="gridContainer">
         <h4>Общая</h4>
         <DxDataGrid
           ref="gridAll"
@@ -95,15 +106,14 @@
         </DxDataGrid>
       </div>
       <!--  -->
-      <div class = "gridContainer" >
-        <h4>За сегодня</h4>
+      <div class="gridContainer">
+        <h4>За 21.10.2022</h4>
         <DxDataGrid
           ref="gridToday"
           :data-source="store.transport"
           :show-borders="true"
           :focused-row-enabled="true"
           @cell-prepared="setPercentColor"
-
         >
           <DxColumn
             data-field="transport_type"
@@ -185,20 +195,19 @@ export default {
     };
   },
   methods: {
-  setPercentColor(e) {
-         if( e.rowType === "data" && e.column.dataField === "success_percent"){
-           e.data.Task_Status === "Completed"
-           e.cellElement.style.color = parseFloat(e.value) > 90 ? "green" : "red"
-         }
-
-        }
+    setPercentColor(e) {
+      if (e.rowType === "data" && e.column.dataField === "success_percent") {
+        e.data.Task_Status === "Completed";
+        e.cellElement.style.color = parseFloat(e.value) > 90 ? "green" : "red";
+      }
+    },
   },
 };
 </script>
 <style scoped>
-  .data-wrapper{
-    text-align: center;
-  }
+.data-wrapper {
+  text-align: center;
+}
 .link {
   text-decoration: none;
   color: black;
@@ -224,7 +233,33 @@ export default {
 }
 @media screen and (max-width: 1000px) {
   .gridContainer {
-    width: 100%
+    width: 100%;
+  }
+}
+#blink5 {
+  -webkit-animation: blink5 2s linear infinite;
+  animation: blink5 2s linear infinite;
+}
+@-webkit-keyframes blink5 {
+  0% {
+    color: rgb(245, 12, 12);
+  }
+  50% {
+    color: rgb(230, 215, 16);
+  }
+  100% {
+    color: rgb(245, 12, 12);
+  }
+}
+@keyframes blink5 {
+  0% {
+    color: rgb(245, 12, 12);
+  }
+  50% {
+    color: rgb(230, 215, 16);
+  }
+  100% {
+    color: rgb(245, 12, 12);
   }
 }
 </style>

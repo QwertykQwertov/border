@@ -52,7 +52,9 @@ export default {
                 ((el.success_cnt / el.cnt) * 100).toFixed(2) + "%")
           );
           data = data.filter((el) => {
-            return el.message_dt === today.toISOString().slice(0, 10);
+            console.log(today.toISOString().slice(0, 10))
+            // return el.message_dt === today.toISOString().slice(0, 10);
+            return el.message_dt === '2022-10-21'
           });
           return data;
         });
@@ -63,7 +65,8 @@ export default {
     load() {
       let today= new Date()
       today = today.toISOString().slice(0,10)
-      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${today}`)
+      // return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${today}`)
+      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=2022-10-21`)
         .then((response) => {
           return response.json();
         })
@@ -101,7 +104,9 @@ export default {
     load () {
       let today = new Date()
       today = today.toISOString().slice(0, 10)
-      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${today}`)
+      // return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${today}`)
+      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=2022-10-21`)
+      
         .then((response) => {
           return response.json();
         })

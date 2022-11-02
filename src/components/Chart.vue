@@ -43,7 +43,7 @@
     <DxChart
       id="chart"
       :data-source="store.airports"
-      title="Статистика аэропортов за сегодня"
+      title="Статистика аэропортов за 21.10.2022"
       class="chart"
     >
       <DxCommonSeriesSettings
@@ -124,7 +124,7 @@
     <DxChart
       id="chart"
       :data-source="store.destinationsToday"
-      title="Статистика по странам прибытия за сегодня"
+      title="Статистика по странам прибытия за 21.10.2022"
       class="chart"
     >
       <DxCommonSeriesSettings
