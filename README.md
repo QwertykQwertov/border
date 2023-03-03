@@ -1,7 +1,7 @@
 # Borders app
 
 [This application](https://relocate.artydev.ru/) is collect statistics about peoples relocation from Russia after announcement Partial mobilization.
-Данная статистика представлена как в виде таблицы, так и в виде графиков. Можно увидеть количество пересечений границы как по виду транспорта, аэропорту отправления так и по стране назначения. Источник данных не отображает полной ситуации и не является официальным.
+This statistics are presented both in the form of a table and in the form of graphs. You can see the number of border crossings both by mode of transport, airport of departure and country of destination. The data source does not represent the full situation and is not official.
 
 ## Project setup
 ```
