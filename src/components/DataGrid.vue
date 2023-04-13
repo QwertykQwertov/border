@@ -2,36 +2,48 @@
 <template>
   <div class="data-wrapper">
     <h1>Стастистика прохождения пограничного контроля</h1>
-    <h3 id="blink5">
+    <!-- <h3 id="blink5">
       В настоящее время сбор данных прекращен. Сервис доступен в ознакомительных
       целях.
-    </h3>
-    <div
-      style="
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-evenly;
-      "
-    >
+    </h3> -->
+    <div class="link-wrapper">
       <p>
         <a
           class="link"
           href="https://pay.cloudtips.ru/p/2a3d8e17"
           target="_blank"
-          ><img class="linkIcon" src="../assets/ruble.svg" alt="Пожертвовать" />
-          Подкинуть монету разработчикам</a
-        >
+        ><img
+            class="linkIcon"
+            src="../assets/ruble.svg"
+            alt="Пожертвовать"
+          />
+          Подкинуть монету разработчикам</a>
       </p>
       <p>
-        <a class="link" href="https://t.me/+lUS8sdQPGMkzNDhi" target="_blank"
-          ><img
+        <a
+          class="link"
+          href="https://t.me/+lUS8sdQPGMkzNDhi"
+          target="_blank"
+        ><img
             class="linkIcon"
             src="../assets/telega.svg"
             alt="Ссылка на телеграм"
           />
-          Подписывайся, чтобы следить за изменениями</a
-        >
+          Подписывайся, чтобы следить за изменениями</a>
       </p>
+      <p>
+        <a
+          class="link"
+          href="https://t.me/flyback_bot?start=relocate"
+          target="_blank"
+        ><img
+            class="linkIcon"
+            src="../assets/takeoff-the-plane.png"
+            alt="Ссылка на телеграм"
+          />
+          Покупка обратных билетов за 2 минуты</a>
+      </p>
+      <DatePicker />
     </div>
     <!-- <DxButton
       ref="refreshBtn"
@@ -41,15 +53,12 @@
       hint="Нажмите для обновления информации"
       @click="onClick($event)"
     /> -->
-    <div
-      style="
-        display: flex;
+    <div style="display: flex;
         align-items: flex-start;
         margin-top: 1%;
         flex-wrap: wrap;
         justify-content: space-around;
-      "
-    >
+      ">
       <div class="gridContainer">
         <h4>Общая</h4>
         <DxDataGrid
@@ -64,7 +73,11 @@
             caption="Вид транспорта"
             data-type="string"
           />
-          <DxColumn data-field="cnt" caption="Количество" data-type="number" />
+          <DxColumn
+            data-field="cnt"
+            caption="Количество"
+            data-type="number"
+          />
           <DxColumn
             data-field="success_cnt"
             caption="Успешно прошли"
@@ -107,7 +120,7 @@
       </div>
       <!--  -->
       <div class="gridContainer">
-        <h4>За 21.10.2022</h4>
+        <h4>За {{ store.dateFormatter(store.date) }}</h4>
         <DxDataGrid
           ref="gridToday"
           :data-source="store.transport"
@@ -120,7 +133,11 @@
             caption="Вид транспорта"
             data-type="string"
           />
-          <DxColumn data-field="cnt" caption="Количество" data-type="number" />
+          <DxColumn
+            data-field="cnt"
+            caption="Количество"
+            data-type="number"
+          />
           <DxColumn
             data-field="success_cnt"
             caption="Успешно прошли"
@@ -165,6 +182,7 @@
   </div>
 </template>
 <script>
+import DatePicker from "./DatePicker.vue";
 import {
   DxDataGrid,
   DxColumn,
@@ -181,6 +199,7 @@ import store from "../store/store";
 export default {
   name: "DataGrid",
   components: {
+    DatePicker,
     DxDataGrid,
     DxColumn,
     DxSummary,
@@ -189,13 +208,13 @@ export default {
     DxSearchPanel,
     DxButton,
   },
-  data() {
+  data () {
     return {
       store,
     };
   },
   methods: {
-    setPercentColor(e) {
+    setPercentColor (e) {
       if (e.rowType === "data" && e.column.dataField === "success_percent") {
         e.data.Task_Status === "Completed";
         e.cellElement.style.color = parseFloat(e.value) > 90 ? "green" : "red";
@@ -207,6 +226,19 @@ export default {
 <style scoped>
 .data-wrapper {
   text-align: center;
+}
+.link-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.link-wrapper p {
+  display: block;
+  width: 20%;
+  /* min-width: 200px; */
 }
 .link {
   text-decoration: none;
@@ -236,6 +268,13 @@ export default {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .link-wrapper p {
+    width: 40%;
+  }
+}
+
 #blink5 {
   -webkit-animation: blink5 2s linear infinite;
   animation: blink5 2s linear infinite;

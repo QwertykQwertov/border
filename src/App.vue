@@ -56,6 +56,10 @@ export default {
     Footer,
     DxPopup,
   },
+  created(){
+    const today = new Date()
+    store.date = today.toISOString().slice(0, 10)
+  },
   data() {
     return {
       store,

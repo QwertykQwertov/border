@@ -1,6 +1,9 @@
 import DataSource from "devextreme/data/data_source";
 
+let today = new Date()
+let date = today.toISOString().slice(0, 10);
 export default {
+  date: '',
   allMessages: new DataSource({
     key: "transport_type",
     load() {
@@ -52,9 +55,8 @@ export default {
                 ((el.success_cnt / el.cnt) * 100).toFixed(2) + "%")
           );
           data = data.filter((el) => {
-            console.log(today.toISOString().slice(0, 10))
-            // return el.message_dt === today.toISOString().slice(0, 10);
-            return el.message_dt === '2022-10-21'
+            // return el.message_dt === '2022-10-21'
+            return el.message_dt === date;
           });
           return data;
         });
@@ -65,8 +67,8 @@ export default {
     load() {
       let today= new Date()
       today = today.toISOString().slice(0,10)
-      // return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${today}`)
-      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=2022-10-21`)
+      // return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=2022-10-21`)
+      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${date}`)
         .then((response) => {
           return response.json();
         })
@@ -104,8 +106,8 @@ export default {
     load () {
       let today = new Date()
       today = today.toISOString().slice(0, 10)
-      // return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${today}`)
-      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=2022-10-21`)
+      // return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=2022-10-21`)
+      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${date}`)
       
         .then((response) => {
           return response.json();
@@ -116,4 +118,10 @@ export default {
         });
     },
   }),
+  setDate(newDate){
+    date = newDate.toISOString().slice(0, 10);
+  },
+  dateFormatter(date){
+    return date.split('-').reverse().join('.')
+  }
 };

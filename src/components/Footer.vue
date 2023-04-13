@@ -36,7 +36,7 @@
         >
         <a
           class="grey-text text-lighten-4 right footer-link"
-          href="https://t.me/nimorozov"
+          href="https://t.me/QwertykQwertov"
           target="_blank"
           >По вопросам сотрудничества обращаться по ссылке</a
         >

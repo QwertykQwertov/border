@@ -43,7 +43,7 @@
     <DxChart
       id="chart"
       :data-source="store.airports"
-      title="Статистика аэропортов за 21.10.2022"
+      :title="titleAirport"
       class="chart"
     >
       <DxCommonSeriesSettings
@@ -124,7 +124,7 @@
     <DxChart
       id="chart"
       :data-source="store.destinationsToday"
-      title="Статистика по странам прибытия за 21.10.2022"
+      :title="titleCountry"
       class="chart"
     >
       <DxCommonSeriesSettings
@@ -259,6 +259,14 @@ export default {
         { value: "failed_cnt", name: "Не пропустили" },
       ],
     };
+  },
+  computed:{
+    titleAirport(){
+      return `Статистика аэропортов за ${store.dateFormatter(store.date)}`
+    },
+    titleCountry(){
+      return `Статистика по странам прибытия за ${store.dateFormatter(store.date)}`
+    }
   },
   methods: {
     destinationTooltip (pointInfo) {
