@@ -68,7 +68,7 @@ export default {
       let today= new Date()
       today = today.toISOString().slice(0,10)
       // return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=2022-10-21`)
-      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${date}`)
+      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${date}&end_date=${date}`)
         .then((response) => {
           return response.json();
         })
@@ -107,7 +107,7 @@ export default {
       let today = new Date()
       today = today.toISOString().slice(0, 10)
       // return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=2022-10-21`)
-      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${date}`)
+      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${date}&end_date=${date}`)
       
         .then((response) => {
           return response.json();
