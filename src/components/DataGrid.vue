@@ -38,7 +38,7 @@
           target="_blank"
         ><img
             class="linkIcon"
-            src="../assets/takeoff-the-plane.png"
+            src="../assets/plane.png"
             alt="Ссылка на телеграм"
           />
           Покупка обратных билетов за 2 минуты</a>
