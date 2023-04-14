@@ -53,12 +53,7 @@
       hint="Нажмите для обновления информации"
       @click="onClick($event)"
     /> -->
-    <div style="display: flex;
-        align-items: flex-start;
-        margin-top: 1%;
-        flex-wrap: wrap;
-        justify-content: space-around;
-      ">
+    <div class="wrap-grid-container">
       <div class="gridContainer">
         <h4>Общая</h4>
         <DxDataGrid
@@ -126,6 +121,8 @@
           :data-source="store.transport"
           :show-borders="true"
           :focused-row-enabled="true"
+          :show-column-lines="true"
+          :show-row-lines="false"
           @cell-prepared="setPercentColor"
         >
           <DxColumn
@@ -224,6 +221,13 @@ export default {
 };
 </script>
 <style scoped>
+.wrap-grid-container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .data-wrapper {
   text-align: center;
 }
