@@ -3,6 +3,7 @@
   <div id="app">
     <Header @openPopup="showPopup" />
     <main class="main-wrapper">
+      <TitleBlock />
       <DataGrid />
       <Chart />
       <DxPopup
@@ -24,11 +25,12 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Chart from "./components/Chart.vue";
-import DataGrid from "./components/DataGrid.vue";
-import Footer from "./components/Footer.vue";
 import "devextreme/dist/css/dx.material.orange.light.compact.css";
+import Header from "./components/Header.vue";
+import TitleBlock from "./components/TitleBlock.vue";
+import DataGrid from "./components/DataGrid.vue";
+import Chart from "./components/Chart.vue";
+import Footer from "./components/Footer.vue";
 import store from "./store/store";
 import DxPopup from "devextreme-vue/popup";
 import PopUpContent from "./components/PopUpContent.vue";
@@ -37,6 +39,7 @@ export default {
   name: "App",
   components: {
     Header,
+    TitleBlock,
     DataGrid,
     Chart,
     Footer,
@@ -64,7 +67,6 @@ export default {
   },
   methods: {
     showPopup() {
-      console.log(this.popupVisible);
       this.popupVisible = true;
     },
     onHiding() {
@@ -79,7 +81,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
   margin: 0;
 }
@@ -98,7 +99,6 @@ export default {
   box-sizing: border-box;
 }
 .link:hover .linkIcon {
-  /* box-shadow: 0px 0px 5px 10px #000; */
   border-radius: 100px; /* Радиус скругления */
   border: 3px solid; /* Параметры рамки */
   box-shadow: 0 0 7px #666;

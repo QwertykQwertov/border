@@ -37,7 +37,6 @@ export default {
 <style scoped>
 .link {
   color: white;
-  /* text-decoration-line: underline !important; */
 }
 .link:hover {
   color: #666;
