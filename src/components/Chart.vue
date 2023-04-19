@@ -6,7 +6,7 @@
       :data-source="store.stats"
       palette="Violet"
       title="Динамика количества попыток пересечения границы по дням"
-      style="width: 98%"
+      style="width: 100%"
     >
       <DxCommonSeriesSettings argument-field="message_dt" />
       <DxCommonAxisSettings>

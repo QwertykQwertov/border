@@ -1,7 +1,7 @@
 /* eslint-disable */
 <template>
   <div class="data-wrapper">
-    <h1>Стастистика прохождения пограничного контроля</h1>
+    <h1 class="main-title">Стастистика прохождения пограничного контроля</h1>
     <!-- <h3 id="blink5">
       В настоящее время сбор данных прекращен. Сервис доступен в ознакомительных
       целях.
@@ -12,36 +12,32 @@
           class="link"
           href="https://pay.cloudtips.ru/p/2a3d8e17"
           target="_blank"
-        ><img
-            class="linkIcon"
-            src="../assets/ruble.svg"
-            alt="Пожертвовать"
-          />
-          Подкинуть монету разработчикам</a>
+          ><img class="linkIcon" src="../assets/ruble.svg" alt="Пожертвовать" />
+          Подкинуть монету разработчикам</a
+        >
       </p>
       <p>
-        <a
-          class="link"
-          href="https://t.me/+lUS8sdQPGMkzNDhi"
-          target="_blank"
-        ><img
+        <a class="link" href="https://t.me/+lUS8sdQPGMkzNDhi" target="_blank"
+          ><img
             class="linkIcon"
             src="../assets/telega.svg"
             alt="Ссылка на телеграм"
           />
-          Подписывайся, чтобы следить за изменениями</a>
+          Подписывайся, чтобы следить за изменениями</a
+        >
       </p>
       <p>
         <a
           class="link"
           href="https://t.me/flyback_bot?start=relocate"
           target="_blank"
-        ><img
+          ><img
             class="linkIcon"
             src="../assets/plane.png"
             alt="Ссылка на телеграм"
           />
-          Покупка обратных билетов за 2 минуты</a>
+          Покупка обратных билетов за 2 минуты</a
+        >
       </p>
       <DatePicker />
     </div>
@@ -61,6 +57,7 @@
           :data-source="store.allMessages"
           :show-borders="true"
           :focused-row-enabled="true"
+          :height="303"
           @cell-prepared="setPercentColor"
         >
           <DxColumn
@@ -68,11 +65,7 @@
             caption="Вид транспорта"
             data-type="string"
           />
-          <DxColumn
-            data-field="cnt"
-            caption="Количество"
-            data-type="number"
-          />
+          <DxColumn data-field="cnt" caption="Количество" data-type="number" />
           <DxColumn
             data-field="success_cnt"
             caption="Успешно прошли"
@@ -121,20 +114,15 @@
           :data-source="store.transport"
           :show-borders="true"
           :focused-row-enabled="true"
-          :show-column-lines="true"
-          :show-row-lines="false"
           @cell-prepared="setPercentColor"
+          :height="303"
         >
           <DxColumn
             data-field="transport_type"
             caption="Вид транспорта"
             data-type="string"
           />
-          <DxColumn
-            data-field="cnt"
-            caption="Количество"
-            data-type="number"
-          />
+          <DxColumn data-field="cnt" caption="Количество" data-type="number" />
           <DxColumn
             data-field="success_cnt"
             caption="Успешно прошли"
@@ -205,13 +193,13 @@ export default {
     DxSearchPanel,
     DxButton,
   },
-  data () {
+  data() {
     return {
       store,
     };
   },
   methods: {
-    setPercentColor (e) {
+    setPercentColor(e) {
       if (e.rowType === "data" && e.column.dataField === "success_percent") {
         e.data.Task_Status === "Completed";
         e.cellElement.style.color = parseFloat(e.value) > 90 ? "green" : "red";
@@ -276,6 +264,12 @@ export default {
 @media screen and (max-width: 700px) {
   .link-wrapper p {
     width: 40%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main-title {
+    font-size: 3.2rem;
   }
 }
 
