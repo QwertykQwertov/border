@@ -2,7 +2,6 @@
   <div class="date-wrapper">
     <DxDateBox
       :value="now"
-      width="400"
       height="50"
       display-format="d.MM.yyyy"
       @value-changed="onVlaueChanged"
@@ -41,7 +40,6 @@ export default {
 /* @import url("https://cdn3.devexpress.com/jslib/22.2.5/css/dx.light.css"); */
 .date-wrapper {
   width: 20%;
-  /* margin: 2% auto; */
 }
 .dx-texteditor.dx-editor-filled {
   background: transparent;

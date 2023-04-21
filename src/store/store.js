@@ -1,9 +1,9 @@
 import DataSource from "devextreme/data/data_source";
 
-let today = new Date()
+let today = new Date();
 let date = today.toISOString().slice(0, 10);
 export default {
-  date: '',
+  date: "",
   allMessages: new DataSource({
     key: "transport_type",
     load() {
@@ -65,17 +65,20 @@ export default {
   airports: new DataSource({
     key: "transport_type",
     load() {
-      let today= new Date()
-      today = today.toISOString().slice(0,10)
+      let today = new Date();
+      today = today.toISOString().slice(0, 10);
       // return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=2022-10-21`)
-      return fetch(`https://border-api.artydev.ru/api/v1/airport?begin_date=${date}&end_date=${date}`)
+      return fetch(
+        `https://border-api.artydev.ru/api/v1/airport?begin_date=${date}&end_date=${date}`
+      )
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           return data;
         });
-    },  }),
+    },
+  }),
   airportsAllTime: new DataSource({
     key: "transport_type",
     load() {
@@ -90,38 +93,39 @@ export default {
   }),
   destinationsAllTime: new DataSource({
     key: "transport_type",
-    load () {
+    load() {
       return fetch("https://border-api.artydev.ru/api/v1/destination_all_time")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          data.sort((a,b) => b.cnt - a.cnt)
+          data.sort((a, b) => b.cnt - a.cnt);
           return data;
         });
     },
   }),
   destinationsToday: new DataSource({
     key: "transport_type",
-    load () {
-      let today = new Date()
-      today = today.toISOString().slice(0, 10)
+    load() {
+      let today = new Date();
+      today = today.toISOString().slice(0, 10);
       // return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=2022-10-21`)
-      return fetch(`https://border-api.artydev.ru/api/v1/destination?begin_date=${date}&end_date=${date}`)
-      
+      return fetch(
+        `https://border-api.artydev.ru/api/v1/destination?begin_date=${date}&end_date=${date}`
+      )
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          data.sort((a,b) => b.cnt - a.cnt)
+          data.sort((a, b) => b.cnt - a.cnt);
           return data;
         });
     },
   }),
-  setDate(newDate){
+  setDate(newDate) {
     date = newDate.toISOString().slice(0, 10);
   },
-  dateFormatter(date){
-    return date.split('-').reverse().join('.')
-  }
+  dateFormatter(date) {
+    return date.split("-").reverse().join(".");
+  },
 };
